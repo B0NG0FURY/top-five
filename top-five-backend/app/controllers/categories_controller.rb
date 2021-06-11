@@ -1,8 +1,7 @@
 class CategoriesController < ApplicationController
     def index
-    end
-
-    def show
+        sightings = Sighting.all
+        render json: sightings.to_json(only: [:id, :name])
     end
 
     def create

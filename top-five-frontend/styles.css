@@ -14,5 +14,21 @@ header {
 }
 
 .list-nav {
+    margin-top: 15px;
     display: inline-flex;
+    justify-content: center;
+    width: 95%;
+    height: auto;
+}
+
+.category-select {
+    width: fit-content;
+    height: fit-content;
+    background-color: aqua;
+}
+
+.new-list {
+    width: fit-content;
+    height: fit-content;
+    background-color: aqua;
 }

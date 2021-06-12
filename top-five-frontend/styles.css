@@ -12,3 +12,7 @@ header {
     font-size: 75px;
     box-shadow: 5px 5px darkslategray ;
 }
+
+.list-nav {
+    display: inline-flex;
+}

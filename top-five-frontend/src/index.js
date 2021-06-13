@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.appendChild(select);
         select.addEventListener("change", (e) => {
             e.preventDefault();
-            displayLists(e.target.value);
+            getLists(e.target.value);
         })
     });
 })
@@ -45,7 +45,22 @@ function getCategories() {
 function addCategory(category, element) {
     let cat = new Category(category["id"], category["name"]);
     let option = document.createElement("option");
-    option.value = `${cat.name}`;
+    option.value = `${cat.id.toString()}`;
     option.text = `${cat.name}`;
     element.appendChild(option);
+}
+
+function getLists(e) {
+    let configObject = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            "category_id": parseInt(e)
+        })
+    }
+
+    fetch()
 }

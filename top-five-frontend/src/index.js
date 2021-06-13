@@ -65,5 +65,5 @@ function displayLists(lists) {
         listDiv.appendChild(div);
     });
     let listContainer = document.querySelector("div.list-container");
-    listContainer.innerHTML = listDiv;
+    listContainer.innerHTML = listDiv.innerHTML;
 }

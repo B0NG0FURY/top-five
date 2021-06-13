@@ -12,11 +12,18 @@ document.addEventListener("DOMContentLoaded", () => {
     getCategories().then(categories => {
         let div = document.querySelector("div.category-select");
         let select = document.createElement("select");
+        let option = document.createElement("option");
+        option.text = "All";
         select.setAttribute("name", "categories");
+        select.appendChild(option);
         categories.forEach(category => {
             addCategory(category, select);
         });
         div.appendChild(select);
+        select.addEventListener("change", (e) => {
+            e.preventDefault();
+            displayLists(e.target.value);
+        })
     });
 })
 

@@ -8,6 +8,17 @@ class Category {
     }
 }
 
+class List {
+    constructor(title, first, second, third, fourth, fifth) {
+        this.title = title;
+        this.first = first;
+        this.second = second;
+        this.third = third;
+        this.fourth = fourth;
+        this.fifth = fifth;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => { 
     getCategories().then(categories => {
         let div = document.querySelector("div.category-select");

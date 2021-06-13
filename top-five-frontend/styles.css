@@ -25,7 +25,10 @@ header {
 .category-select {
     width: fit-content;
     height: fit-content;
+    display: flex;
+    flex-direction: column;
     background-color: aqua;
+    padding: 10px;
 }
 
 .new-list {

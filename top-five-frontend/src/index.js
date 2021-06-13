@@ -51,16 +51,5 @@ function addCategory(category, element) {
 }
 
 function getLists(e) {
-    let configObject = {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json"
-        },
-        body: JSON.stringify({
-            "category_id": parseInt(e)
-        })
-    }
-
-    fetch()
+    fetch(`${CATEGORIES_URL}/${parseInt(e)}/lists`).then(resp => resp.json()).then(lists => displayLists(lists));
 }

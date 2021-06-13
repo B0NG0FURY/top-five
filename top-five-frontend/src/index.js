@@ -9,13 +9,9 @@ class Category {
 }
 
 class List {
-    constructor(title, first, second, third, fourth, fifth) {
+    constructor(id, title) {
+        this.id = id;
         this.title = title;
-        this.first = first;
-        this.second = second;
-        this.third = third;
-        this.fourth = fourth;
-        this.fifth = fifth;
     }
 }
 
@@ -52,4 +48,22 @@ function addCategory(category, element) {
 
 function getLists(e) {
     fetch(`${CATEGORIES_URL}/${parseInt(e)}/lists`).then(resp => resp.json()).then(lists => displayLists(lists));
+}
+
+function displayLists(lists) {
+    let listDiv = document.createElement("div");
+    listDiv.className = "display-lists";
+    lists.forEach(listObject => {
+        let list = new List(listObject["id"], listObject["title"]);
+
+        let div = document.createElement("div");
+        div.setAttribute("class", "list");
+        div.setAttribute("data-list-id", `${list.id}`)
+        let p = document.createElement("p");
+        p.innerText = list.title;
+        div.appendChild(p);
+        listDiv.appendChild(div);
+    });
+    let listContainer = document.querySelector("div.list-container");
+    listContainer.innerHTML = listDiv;
 }

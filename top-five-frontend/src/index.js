@@ -92,3 +92,25 @@ function displayItem(itemObject) {
     li.innerHTML = `${item.name}`;
     return li;
 }
+
+function rankButtons(item) {
+    let rankUp = document.createElement("button");
+    rankUp.innerText = "&#9650";
+    rankUp.setAttribute("class", "rank-up");
+    rankUp.setAttribute("data-item-id", `${item.id}`);
+    rankUp.addEventListener("click", (e) => moveRankUp(e));
+
+    let rankDown = document.createElement("button");
+    rankDown.innerText = "&#9660";
+    rankDown.setAttribute("class", "rank-down");
+    rankDown.setAttribute("data-item-id", `${item.id}`);
+    rankDown.addEventListener("click", (e) => moveRankDown(e));
+
+    if (item.rank === 1) {
+        return rankDown;
+    } else if (item.rank === 5) {
+        return rankUp;
+    } else {
+        return `${rankUp} ${rankDown}`;
+    }
+}

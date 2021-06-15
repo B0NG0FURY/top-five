@@ -89,12 +89,12 @@ function displayItem(itemObject) {
     li.setAttribute("class", "item");
     li.setAttribute("data-item-id", `${item.id}`);
     li.setAttribute("data-item-rank", `${item.rank}`);
-    li.innerHTML = `${item.name}`;
-    li.append(rankButtons(item));
+    li.innerText = `${item.name}`;
+    rankButtons(item, li);
     return li;
 }
 
-function rankButtons(item) {
+function rankButtons(item, li) {
     let rankUp = document.createElement("span");
     rankUp.setAttribute("class", "rank-up");
     rankUp.setAttribute("data-item-id", `${item.id}`);
@@ -106,13 +106,25 @@ function rankButtons(item) {
     rankDown.addEventListener("click", (e) => moveRankDown(e));
 
     if (item.rank === 1) {
-        return rankDown;
+        li.append(rankDown);
     } else if (item.rank === 5) {
-        return rankUp;
+        li.append(rankUp);
     } else {
-        let span = document.createElement("span");
-        span.append(rankDown);
-        span.append(rankUp);
-        return span;
+        li.append(rankDown);
+        li.append(rankUp);
+    }
+}
+
+function moveRankDown(e) {
+    let configObject = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            "down_id": parseInt(e.getAttribute("data-item-id")),
+            "up_id": parseInt(e.nextSibling.getAttribute("data-item-id"))
+        })
     }
 }

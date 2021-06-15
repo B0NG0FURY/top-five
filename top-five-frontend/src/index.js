@@ -70,16 +70,24 @@ function displayLists(lists) {
         let p = document.createElement("p");
         p.innerText = list.title;
         div.appendChild(p);
+
+        let ol = document.createElement("ol");
+        listObject["items_ranked"].forEach(item => {
+            ol.appendChild(displayItem(item));
+        });
+        div.appendChild(ol);
+
         listDiv.appendChild(div);
     });
     let listContainer = document.querySelector("div.list-container");
     listContainer.innerHTML = listDiv.innerHTML;
 }
 
-function displayItem(item) {
-    let item = new Item(item["id"], item["name"], item["rank"]);
+function displayItem(itemObject) {
+    let item = new Item(itemObject["id"], itemObject["name"], itemObject["rank"]);
     let li = document.createElement("li");
     li.setAttribute("class", "item");
+    li.setAttribute("data-item-id", `${item.id}`);
     li.setAttribute("data-item-rank", `${item.rank}`);
     li.innerHTML = `${item.name}`;
     return li;

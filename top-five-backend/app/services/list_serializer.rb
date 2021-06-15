@@ -5,7 +5,7 @@ class ListSerializer
 
     def to_serialized_json
         @lists.to_json(include: {
-            items_ranked: {only: [:name, :rank]}
+            items_ranked: {only: [:id, :name, :rank]}
         }, except: [:created_at, :updated_at])
     end
 end

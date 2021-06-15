@@ -55,3 +55,14 @@ li {
     width: 20%;
     height: 300px;
 }
+
+.rank-up:before {
+    float: right;
+    content: "\25B2";
+    padding-right: 3px;
+}
+
+.rank-down:before {
+    float: right;
+    content: "\25BC";
+}

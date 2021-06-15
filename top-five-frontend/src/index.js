@@ -90,18 +90,17 @@ function displayItem(itemObject) {
     li.setAttribute("data-item-id", `${item.id}`);
     li.setAttribute("data-item-rank", `${item.rank}`);
     li.innerHTML = `${item.name}`;
+    li.append(rankButtons(item));
     return li;
 }
 
 function rankButtons(item) {
-    let rankUp = document.createElement("button");
-    rankUp.innerText = "&#9650";
+    let rankUp = document.createElement("span");
     rankUp.setAttribute("class", "rank-up");
     rankUp.setAttribute("data-item-id", `${item.id}`);
     rankUp.addEventListener("click", (e) => moveRankUp(e));
 
-    let rankDown = document.createElement("button");
-    rankDown.innerText = "&#9660";
+    let rankDown = document.createElement("span");
     rankDown.setAttribute("class", "rank-down");
     rankDown.setAttribute("data-item-id", `${item.id}`);
     rankDown.addEventListener("click", (e) => moveRankDown(e));
@@ -111,6 +110,9 @@ function rankButtons(item) {
     } else if (item.rank === 5) {
         return rankUp;
     } else {
-        return `${rankUp} ${rankDown}`;
+        let span = document.createElement("span");
+        span.append(rankDown);
+        span.append(rankUp);
+        return span;
     }
 }

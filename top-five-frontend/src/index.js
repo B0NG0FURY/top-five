@@ -15,6 +15,14 @@ class List {
     }
 }
 
+class Item {
+    constructor(id, name, rank) {
+        this.id = id;
+        this.name = name;
+        this.rank = rank;
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => { 
     getCategories().then(categories => {
         let div = document.querySelector("div.category-select");
@@ -66,4 +74,13 @@ function displayLists(lists) {
     });
     let listContainer = document.querySelector("div.list-container");
     listContainer.innerHTML = listDiv.innerHTML;
+}
+
+function displayItem(item) {
+    let item = new Item(item["id"], item["name"], item["rank"]);
+    let li = document.createElement("li");
+    li.setAttribute("class", "item");
+    li.setAttribute("data-item-rank", `${item.rank}`);
+    li.innerHTML = `${item.name}`;
+    return li;
 }

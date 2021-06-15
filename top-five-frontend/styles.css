@@ -13,6 +13,10 @@ header {
     box-shadow: 5px 5px darkslategray ;
 }
 
+li {
+    padding-bottom: 10px;
+}
+
 .list-nav {
     margin-top: 15px;
     display: inline-flex;

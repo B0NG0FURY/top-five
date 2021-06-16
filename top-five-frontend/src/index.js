@@ -103,7 +103,7 @@ function rankButtons(item, li) {
     let rankDown = document.createElement("span");
     rankDown.setAttribute("class", "rank-down");
     rankDown.setAttribute("data-item-id", `${item.id}`);
-    rankDown.addEventListener("click", (e) => moveRankDown(e));
+    rankDown.addEventListener("click", (e) => moveRankDown(e.target));
 
     if (item.rank === 1) {
         li.append(rankDown);
@@ -124,7 +124,7 @@ function moveRankDown(e) {
         },
         body: JSON.stringify({
             "down_id": parseInt(e.getAttribute("data-item-id")),
-            "up_id": parseInt(e.nextSibling.getAttribute("data-item-id"))
+            "up_id": parseInt(e.parentElement.nextSibling.getAttribute("data-item-id"))
         })
     }
 }

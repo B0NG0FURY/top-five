@@ -3,7 +3,10 @@ class ItemsController < ApplicationController
         movingDown = Item.find_by_id(params[:down_id])
         movingUp = Item.find_by_id(params[:up_id])
 
-        if movingDown.update(rank: params[:up_rank]) && movingUp.update(rank: params[:down_rank])
+        movingDown.rank += 1
+        movingUp.rank -= 1
+
+        if movingDown.save && movingUp.save
             render json: [movingUp, movingDown].to_json(only: [:id, :name, :rank])
         end
     end

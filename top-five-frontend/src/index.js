@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         let option = document.createElement("option");
         option.text = "All";
         select.setAttribute("name", "categories");
+        select.setAttribute("id", "categories");
         select.appendChild(option);
         categories.forEach(category => {
             addCategory(category, select);
@@ -59,6 +60,7 @@ function getLists(e) {
 }
 
 function displayLists(lists) {
+    let listContainer = document.querySelector("div.list-container");
     let listDiv = document.createElement("div");
     listDiv.className = "display-lists";
     lists.forEach(listObject => {
@@ -69,21 +71,18 @@ function displayLists(lists) {
         div.setAttribute("data-list-id", `${list.id}`)
         let p = document.createElement("p");
         p.innerText = list.title;
-        div.appendChild(p);
 
         let ol = document.createElement("ol");
         listObject["items_ranked"].forEach(item => {
-            ol.appendChild(displayItem(item));
+            displayItem(item, ol);
         });
-        div.appendChild(ol);
+        div.append(p, ol);
 
-        listDiv.appendChild(div);
+        listContainer.append(div)
     });
-    let listContainer = document.querySelector("div.list-container");
-    listContainer.innerHTML = listDiv.innerHTML;
 }
 
-function displayItem(itemObject) {
+function displayItem(itemObject, listElement) {
     let item = new Item(itemObject["id"], itemObject["name"], itemObject["rank"]);
     let li = document.createElement("li");
     li.setAttribute("class", "item");
@@ -91,33 +90,33 @@ function displayItem(itemObject) {
     li.setAttribute("data-item-rank", `${item.rank}`);
     li.innerText = `${item.name}`;
     rankButtons(item, li);
-    return li;
+    listElement.appendChild(li);
 }
 
 function rankButtons(item, li) {
-    let rankUp = document.createElement("span");
+    let rankUp = document.createElement("button");
     rankUp.setAttribute("class", "rank-up");
     rankUp.setAttribute("data-item-id", `${item.id}`);
     rankUp.addEventListener("click", (e) => moveRankUp(e));
 
-    let rankDown = document.createElement("span");
+    let rankDown = document.createElement("button");
     rankDown.setAttribute("class", "rank-down");
     rankDown.setAttribute("data-item-id", `${item.id}`);
-    rankDown.addEventListener("click", (e) => moveRankDown(e.target));
+    rankDown.innerText = "Down";
+    rankDown.addEventListener("click", (e) => console.log("yes"));
 
     if (item.rank === 1) {
         li.append(rankDown);
     } else if (item.rank === 5) {
         li.append(rankUp);
     } else {
-        li.append(rankDown);
-        li.append(rankUp);
+        li.append(rankUp, rankDown);
     }
 }
 
 function moveRankDown(e) {
     let configObject = {
-        method: "PATCH",
+        method: "POST",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json"
@@ -126,7 +125,7 @@ function moveRankDown(e) {
             "down_id": parseInt(e.getAttribute("data-item-id")),
             "down_rank": parseInt(e.parentElement.getAttribute("data-item-rank")),
             "up_id": parseInt(e.parentElement.nextSibling.getAttribute("data-item-id")),
-            "up_rank": parseInt(e.parentElement.nextSibling.getAttribute("data-item-id"))
+            "up_rank": parseInt(e.parentElement.nextSibling.getAttribute("data-item-rank"))
         })
     }
     let higherRank = e.parentElement;

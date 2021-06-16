@@ -62,7 +62,6 @@ li {
     padding-right: 3px;
 }
 
-.rank-down:before {
+.rank-down {
     float: right;
-    content: "\25BC";
 }

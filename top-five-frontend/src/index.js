@@ -129,8 +129,13 @@ function moveRankDown(e) {
             "up_rank": parseInt(e.parentElement.nextSibling.getAttribute("data-item-id"))
         })
     }
-    let movingDown = e.parentElement;
-    let movingUp = e.parentElement.nextSibling;
-    
-    fetch(`${BASE_URL}/items/swap`, configObject)
+    let higherRank = e.parentElement;
+    let lowerRank = e.parentElement.nextSibling;
+
+    fetch(`${BASE_URL}/items/swap`, configObject).then(resp => resp.json()).then(items => {
+        higherRank.setAttribute("data-item-rank", `${items[0]["rank"]}`);
+        higherRank.innerText = `${items[0]["name"]}`;
+        lowerRank.setAttribute("data-item-rank", `${items[1]["rank"]}`);
+        lowerRank.innerText = `${items[1]["name"]}`;
+    });
 }

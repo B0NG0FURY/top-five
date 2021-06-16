@@ -61,8 +61,7 @@ function getLists(e) {
 
 function displayLists(lists) {
     let listContainer = document.querySelector("div.list-container");
-    let listDiv = document.createElement("div");
-    listDiv.className = "display-lists";
+    listContainer.innerHTML = "";
     lists.forEach(listObject => {
         let list = new List(listObject["id"], listObject["title"]);
 

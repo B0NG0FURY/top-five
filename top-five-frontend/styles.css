@@ -14,7 +14,8 @@ header {
 }
 
 li {
-    padding-bottom: 10px;
+    float: left;
+    padding-bottom: 30px;
 }
 
 .list-nav {

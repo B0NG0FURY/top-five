@@ -96,14 +96,10 @@ function displayItem(itemObject, listElement) {
 function rankButtons(item, li) {
     let rankUp = document.createElement("button");
     rankUp.setAttribute("class", "rank-up");
-    rankUp.setAttribute("data-item-id", `${item.id}`);
-    rankUp.addEventListener("click", (e) => moveRankUp(e));
 
     let rankDown = document.createElement("button");
     rankDown.setAttribute("class", "rank-down");
-    rankDown.setAttribute("data-item-id", `${item.id}`);
     rankDown.innerText = "Down";
-    rankDown.addEventListener("click", (e) => console.log("yes"));
 
     if (item.rank === 1) {
         li.append(rankDown);
@@ -112,6 +108,8 @@ function rankButtons(item, li) {
     } else {
         li.append(rankUp, rankDown);
     }
+    rankUp.addEventListener("click", (e) => moveRankUp(e));
+    rankDown.addEventListener("click", (e) => moveRankDown(e.target));
 }
 
 function moveRankDown(e) {
@@ -122,19 +120,26 @@ function moveRankDown(e) {
             Accept: "application/json"
         },
         body: JSON.stringify({
-            "down_id": parseInt(e.getAttribute("data-item-id")),
-            "down_rank": parseInt(e.parentElement.getAttribute("data-item-rank")),
+            "down_id": parseInt(e.parentElement.getAttribute("data-item-id")),
             "up_id": parseInt(e.parentElement.nextSibling.getAttribute("data-item-id")),
-            "up_rank": parseInt(e.parentElement.nextSibling.getAttribute("data-item-rank"))
         })
     }
     let higherRank = e.parentElement;
     let lowerRank = e.parentElement.nextSibling;
 
     fetch(`${BASE_URL}/items/swap`, configObject).then(resp => resp.json()).then(items => {
-        higherRank.setAttribute("data-item-rank", `${items[0]["rank"]}`);
-        higherRank.innerText = `${items[0]["name"]}`;
-        lowerRank.setAttribute("data-item-rank", `${items[1]["rank"]}`);
-        lowerRank.innerText = `${items[1]["name"]}`;
+        higherItem = new Item(items[0]["id"], items[0]["name"], items[0]["rank"]);
+        lowerItem = new Item(items[1]["id"], items[1]["name"], items[1]["rank"]);
+
+        higherRank.setAttribute("data-item-rank", `${higherItem.rank}`);
+        higherRank.setAttribute("data-item-id", `${higherItem.id}`);
+        higherRank.innerText = `${higherItem.name}`;
+        rankButtons(higherItem, higherRank);
+
+
+        lowerRank.setAttribute("data-item-rank", `${lowerItem.rank}`);
+        lowerRank.setAttribute("data-item-id", `${lowerItem.id}`);
+        lowerRank.innerText = `${lowerItem.name}`;
+        rankButtons(lowerItem, lowerRank);
     });
 }

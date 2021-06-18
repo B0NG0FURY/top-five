@@ -94,11 +94,12 @@ function displayItem(itemObject, listElement) {
 
 function rankButtons(item, li) {
     let rankUp = document.createElement("button");
-    rankUp.setAttribute("class", "rank-up");
+    rankUp.setAttribute("class", "swap-rank");
+    rankUp.setAttribute("id", "rank-up");
 
     let rankDown = document.createElement("button");
-    rankDown.setAttribute("class", "rank-down");
-    rankDown.innerText = "Down";
+    rankDown.setAttribute("class", "swap-rank");
+    rankDown.setAttribute("id", "rank-down");
 
     if (item.rank === 1) {
         li.append(rankDown);
@@ -107,11 +108,21 @@ function rankButtons(item, li) {
     } else {
         li.append(rankUp, rankDown);
     }
-    rankUp.addEventListener("click", (e) => moveRankUp(e));
-    rankDown.addEventListener("click", (e) => moveRankDown(e.target));
+    rankUp.addEventListener("click", (e) => swapRank(e.target));
+    rankDown.addEventListener("click", (e) => swapRank(e.target));
 }
 
-function moveRankDown(e) {
+function swapRank(e) {
+    let higherRank;
+    let lowerRank;
+    if (e.id === "rank-down") {
+        higherRank = e.parentElement;
+        lowerRank = e.parentElement.nextSibling;
+    } else if (e.id === "rank-up") {
+        higherRank = e.parentElement.previousSibling;
+        lowerRank = e.parentElement;
+    }
+
     let configObject = {
         method: "POST",
         headers: {
@@ -119,12 +130,10 @@ function moveRankDown(e) {
             Accept: "application/json"
         },
         body: JSON.stringify({
-            "down_id": parseInt(e.parentElement.getAttribute("data-item-id")),
-            "up_id": parseInt(e.parentElement.nextSibling.getAttribute("data-item-id")),
+            "down_id": parseInt(higherRank.getAttribute("data-item-id")),
+            "up_id": parseInt(lowerRank.getAttribute("data-item-id")),
         })
     }
-    let higherRank = e.parentElement;
-    let lowerRank = e.parentElement.nextSibling;
 
     fetch(`${BASE_URL}/items/swap`, configObject).then(resp => resp.json()).then(items => {
         higherItem = new Item(items[0]["id"], items[0]["name"], items[0]["rank"]);

@@ -14,7 +14,6 @@ header {
 }
 
 li {
-    float: left;
     padding-bottom: 30px;
 }
 
@@ -57,12 +56,13 @@ li {
     height: 300px;
 }
 
-.rank-up:before {
+#rank-up:before {
     float: right;
     content: "\25B2";
     padding-right: 3px;
 }
 
-.rank-down {
+#rank-down:before {
     float: right;
+    content: "\25BC";
 }

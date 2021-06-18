@@ -106,7 +106,7 @@ function rankButtons(item, li) {
     } else if (item.rank === 5) {
         li.append(rankUp);
     } else {
-        li.append(rankUp, rankDown);
+        li.append(rankDown, rankUp);
     }
     rankUp.addEventListener("click", (e) => swapRank(e.target));
     rankDown.addEventListener("click", (e) => swapRank(e.target));

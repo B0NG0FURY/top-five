@@ -13,8 +13,18 @@ header {
     box-shadow: 5px 5px darkslategray ;
 }
 
+ol {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 li {
     padding-bottom: 30px;
+    padding-right: 20px;
+    font-size: 1.05em;
 }
 
 .list-nav {
@@ -52,17 +62,18 @@ li {
 
 .list {
     background-color: bisque;
-    width: 20%;
+    width: 275px;
     height: 300px;
 }
 
-#rank-up:before {
+button.swap-rank {
     float: right;
+}
+
+#rank-up:before {
     content: "\25B2";
-    padding-right: 3px;
 }
 
 #rank-down:before {
-    float: right;
     content: "\25BC";
 }

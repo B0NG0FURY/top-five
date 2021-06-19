@@ -71,11 +71,20 @@ function displayLists(lists) {
         let p = document.createElement("p");
         p.innerText = list.title;
 
+        let edit = document.createElement("button");
+        edit.setAttribute("class", "edit");
+        edit.innerText = "Edit";
+        edit.addEventListener("click", (e) => editList(e.target));
+
         let ol = document.createElement("ol");
         listObject["items_ranked"].forEach(item => {
             displayItem(item, ol);
         });
-        div.append(p, ol);
+        let submit = document.createElement("button");
+        submit.setAttribute("class", "edit-submit");
+        submit.setAttribute("data-list-id", `${list.id}`);
+        submit.innerText = "Submit";
+        div.append(p, edit, ol, submit);
 
         listContainer.append(div)
     });
@@ -150,4 +159,28 @@ function swapRank(e) {
         lowerRank.innerText = `${lowerItem.name}`;
         rankButtons(lowerItem, lowerRank);
     });
+}
+
+function editList(e) {
+    let title = e.previousSibling;
+    let ol = e.nextSibling;
+
+    editInput(title);
+    ol.childNodes.forEach(li => editInput(li));
+    
+    let submit = document.querySelector("button.edit-submit");
+    submit.style.display = "inline";
+}
+
+function editInput(element) {
+    let text = element.innerText;
+    if (element.tagName === "P") {
+        let title = "list_title";
+    } else if (element.tagName === "LI") {
+        let id = "item_id";
+    }
+    let input = document.createElement("input");
+    input.setAttribute("value", `${text}`);
+    element.innerHTML = "";
+    element.append(input);
 }

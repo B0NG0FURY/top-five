@@ -170,16 +170,17 @@ function editList(e) {
     
     let submit = document.querySelector("button.edit-submit");
     submit.style.display = "inline";
+    submit.addEventListener("click", (e) => updateList(e.target));
 }
 
 function editInput(element) {
     let text = element.innerText;
-    if (element.tagName === "P") {
-        let title = "list_title";
-    } else if (element.tagName === "LI") {
-        let id = "item_id";
-    }
     let input = document.createElement("input");
+    if (element.tagName === "LI") {
+        let attribute = "item_id";
+        let id = element.getAttribute("data-item-id");
+        input.setAttribute(attribute, id);
+    }
     input.setAttribute("value", `${text}`);
     element.innerHTML = "";
     element.append(input);

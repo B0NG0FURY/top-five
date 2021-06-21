@@ -1,5 +1,6 @@
 const BASE_URL = "http://localhost:3000"
 const CATEGORIES_URL = `${BASE_URL}/categories`
+const LISTS_URL = `${BASE_URL}/lists`
 
 class Category {
     constructor(id, name) {
@@ -184,4 +185,8 @@ function editInput(element) {
     input.setAttribute("value", `${text}`);
     element.innerHTML = "";
     element.append(input);
+}
+
+function updateList(e) {
+    
 }

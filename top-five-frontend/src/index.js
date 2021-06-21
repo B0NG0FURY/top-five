@@ -95,13 +95,21 @@ function displayLists(lists) {
         let div = document.createElement("div");
         div.setAttribute("class", "list");
         div.setAttribute("data-list-id", `${list.id}`)
-        let p = document.createElement("p");
+        
+        makeListElement(div, list);
+        listContainer.append(div)
+    });
+}
+
+function makeListElement(div, list) {
+    let p = document.createElement("p");
         p.innerText = list.title;
 
         let edit = document.createElement("button");
         edit.setAttribute("class", "edit");
         edit.innerText = "Edit";
         edit.addEventListener("click", (e) => editList(e.target));
+        edit.style.display = "block";
 
         let ol = document.createElement("ol");
         listObject["items_ranked"].forEach(item => {
@@ -111,10 +119,8 @@ function displayLists(lists) {
         submit.setAttribute("class", "edit-submit");
         submit.setAttribute("data-list-id", `${list.id}`);
         submit.innerText = "Submit";
+        submit.style.display = "none";
         div.append(p, edit, ol, submit);
-
-        listContainer.append(div)
-    });
 }
 
 function displayItem(itemObject, listElement) {

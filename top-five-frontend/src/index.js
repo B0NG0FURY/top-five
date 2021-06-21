@@ -243,8 +243,9 @@ function updateList(e) {
         })
     }
 
-    fetch(`${LISTS_URL}`/`${list.id}`, configObject).then(resp => resp.json()).then(list => {
+    fetch(`${LISTS_URL}`/`${list.id}`, configObject).then(resp => resp.json()).then(listObject => {
+        let updatedList = new List(listObject["id"], listObject["title"]);
         list.element.innerHTML = "";
-        listElement(div);
-    })
+        makeListElement(list.element, updatedList, listObject);
+    });
 }

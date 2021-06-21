@@ -6,4 +6,11 @@ class ListsController < ApplicationController
             render json: ListSerializer.new(lists).to_serialized_json
         end
     end
+
+    def update
+        list = List.find_by_id(params[:id])
+        if list.update(list_params)
+            render json: ListSerializer.new(list).to_serialized_json
+        end
+    end
 end

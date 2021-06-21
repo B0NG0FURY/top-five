@@ -96,12 +96,12 @@ function displayLists(lists) {
         div.setAttribute("class", "list");
         div.setAttribute("data-list-id", `${list.id}`)
         
-        makeListElement(div, list);
+        makeListElement(div, list, listObject);
         listContainer.append(div)
     });
 }
 
-function makeListElement(div, list) {
+function makeListElement(div, list, listObject) {
     let p = document.createElement("p");
         p.innerText = list.title;
 

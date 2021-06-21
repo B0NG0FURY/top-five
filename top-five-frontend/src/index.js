@@ -16,6 +16,18 @@ class List {
     }
 }
 
+class ListElement {
+    constructor(id, title, first, second, third, fourth, fifth) {
+        this.id = id;
+        this.title = title;
+        this.first = first;
+        this.second = second;
+        this.third = third;
+        this.fourth = fourth;
+        this.fifth = fifth;
+    }
+}
+
 class Item {
     constructor(id, name, rank) {
         this.id = id;
@@ -166,6 +178,7 @@ function editList(e) {
     let title = e.previousSibling;
     let ol = e.nextSibling;
 
+    e.style.display = "none";
     editInput(title);
     ol.childNodes.forEach(li => editInput(li));
     
@@ -188,5 +201,5 @@ function editInput(element) {
 }
 
 function updateList(e) {
-    
+
 }

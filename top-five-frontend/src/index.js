@@ -17,20 +17,20 @@ class List {
 }
 
 class EditListElement {
-    constructor(list) {
-        this.list = list;
+    constructor(element) {
+        this.element = element;
     }
 
     get id() {
-        return parseInt(this.list.getAttribute("data-list-id"));
+        return parseInt(this.element.getAttribute("data-list-id"));
     }
 
     get title() {
-        return this.list.firstChild.firstChild.value;
+        return this.element.firstChild.firstChild.value;
     }
 
     get items() {
-        return this.list.lastChild.previousSibling.childNodes;
+        return this.element.lastChild.previousSibling.childNodes;
     }
 
     item_id(i) {
@@ -215,5 +215,30 @@ function editInput(element) {
 }
 
 function updateList(e) {
+    let list = new EditListElement(e.parentElement);
 
+    let configObject = {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            "list": {
+                "title": list.title,
+                "items_attributes": [
+                    { "id": list.item_id(0), "name": list.item(0) },
+                    { "id": list.item_id(1), "name": list.item(1) },
+                    { "id": list.item_id(2), "name": list.item(2) },
+                    { "id": list.item_id(3), "name": list.item(3) },
+                    { "id": list.item_id(4), "name": list.item(4) }
+                ]
+            }
+        })
+    }
+
+    fetch(`${LISTS_URL}`/`${list.id}`, configObject).then(resp => resp.json()).then(list => {
+        list.element.innerHTML = "";
+        listElement(div);
+    })
 }

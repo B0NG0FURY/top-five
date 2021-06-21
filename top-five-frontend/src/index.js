@@ -34,11 +34,11 @@ class EditListElement {
     }
 
     item_id(i) {
-        return parseInt(this.items[i].getAttribute("data-list-id"));
+        return parseInt(this.items[i].getAttribute("data-item-id"));
     }
 
     item(i) {
-        return items[i].firstChild.value;
+        return this.items[i].firstChild.value;
     }
 }
 

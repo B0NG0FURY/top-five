@@ -16,15 +16,29 @@ class List {
     }
 }
 
-class ListElement {
-    constructor(id, title, first, second, third, fourth, fifth) {
-        this.id = id;
-        this.title = title;
-        this.first = first;
-        this.second = second;
-        this.third = third;
-        this.fourth = fourth;
-        this.fifth = fifth;
+class EditListElement {
+    constructor(list) {
+        this.list = list;
+    }
+
+    get id() {
+        return parseInt(this.list.getAttribute("data-list-id"));
+    }
+
+    get title() {
+        return this.list.firstChild.firstChild.value;
+    }
+
+    get items() {
+        return this.list.lastChild.previousSibling.childNodes;
+    }
+
+    item_id(i) {
+        return parseInt(this.items[i].getAttribute("data-list-id"));
+    }
+
+    item(i) {
+        return items[i].firstChild.value;
     }
 }
 

@@ -52,6 +52,17 @@ class Item {
 
 document.addEventListener("DOMContentLoaded", () => { 
     getCategories().then(categories => {
+        let newDiv = document.querySelector("div.new-list");
+        let newBtn = document.createElement("button");
+        newBtn.setAttribute("class", "new-list-btn");
+        newBtn.innerText = "Create";
+        newBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            newListForm();
+        });
+        newDiv.appendChild(newBtn);
+
+
         let div = document.querySelector("div.category-select");
         let select = document.createElement("select");
         let option = document.createElement("option");

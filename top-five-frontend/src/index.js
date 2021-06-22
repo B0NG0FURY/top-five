@@ -243,7 +243,7 @@ function updateList(e) {
         })
     }
 
-    fetch(`${LISTS_URL}`/`${list.id}`, configObject).then(resp => resp.json()).then(listObject => {
+    fetch(`${LISTS_URL}/${list.id}`, configObject).then(resp => resp.json()).then(listObject => {
         let updatedList = new List(listObject["id"], listObject["title"]);
         list.element.innerHTML = "";
         makeListElement(list.element, updatedList, listObject);

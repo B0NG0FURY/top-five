@@ -50,23 +50,22 @@ class Item {
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => { 
-    getCategories().then(categories => {
-        let newDiv = document.querySelector("div.new-list");
+document.addEventListener("DOMContentLoaded", () => {
+    let newDiv = document.querySelector("div.new-list");
         let newBtn = document.createElement("button");
         newBtn.setAttribute("class", "new-list-btn");
-        newBtn.innerText = "Create";
+        newBtn.innerText = "Create New List";
         newBtn.addEventListener("click", (e) => {
             e.preventDefault();
             newListForm();
         });
         newDiv.appendChild(newBtn);
 
-
+    getCategories().then(categories => {
         let div = document.querySelector("div.category-select");
         let select = document.createElement("select");
         let option = document.createElement("option");
-        option.text = "All";
+        option.text = "Select Category:";
         select.setAttribute("name", "categories");
         select.setAttribute("id", "categories");
         select.appendChild(option);

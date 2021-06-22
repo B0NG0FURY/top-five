@@ -42,12 +42,27 @@ li {
     height: fit-content;
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    padding-top: -10px;
+}
+
+.category-select select {
+    width: 200px;
+    font-family: Arial;
+    font-size: 20px;
 }
 
 .new-list {
     width: fit-content;
     height: fit-content;
+    align-items: center;
+}
+
+.new-list-btn {
+    padding: 12px 28px;
+    border-radius: 8px;
+    border: 2px solid black;
+    font-size: 16px;
+    font-family: Arial;
 }
 
 .list-container {

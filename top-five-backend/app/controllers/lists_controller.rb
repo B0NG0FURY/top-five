@@ -13,4 +13,10 @@ class ListsController < ApplicationController
             render json: ListSerializer.new(list).to_serialized_json
         end
     end
+
+    private
+
+    def list_params
+        params.require(:list).permit(:title, items_attributes: [:id, :name, :rank])
+    end
 end

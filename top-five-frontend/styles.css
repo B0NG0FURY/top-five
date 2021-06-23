@@ -66,6 +66,10 @@ li {
     font-family: Arial;
 }
 
+.new-list-btn:hover {
+    background-color: rgb(184, 181, 181);
+}
+
 .list-container {
     margin-top: 20px;
     width: 95%;

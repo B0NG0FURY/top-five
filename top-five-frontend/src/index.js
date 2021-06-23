@@ -259,3 +259,32 @@ function updateList(e) {
         makeListElement(list.element, updatedList, listObject);
     });
 }
+
+function newListForm() {
+    let div = document.querySelector("div.new-list-form");
+    let form = document.createElement("form");
+    let titleLabel = document.createElement("label")
+    titleLabel.setAttribute("for", "title")
+    titleLabel.innerText = "Title";
+    let title = document.createElement("input");
+    title.setAttribute("name", "title");
+    
+    getCategories().then(categories => {
+        let categoryLabel = document.createElement("label");
+        categoryLabel.setAttribute("name", "assign-category");
+        let select = document.createElement("select");
+        select.setAttribute("name", "assign-category");
+        let option = document.createElement("option");
+        option.text = "Assign Category:";
+        let optionValue = 0;
+        option.value = `${optionValue.toString()}`;
+        select.appendChild(option);
+        categories.forEach(category => addCategory(category, select));
+        let newCategory = document.createElement("input");
+        newCategory.setAttribute("name", "assign-category");
+        newCategory.setAttribute("placeholder", "New Category");
+        form.append(titleLabel, title, categoryLabel, select, newCategory);
+    });
+
+    div.appendChild(form);
+}

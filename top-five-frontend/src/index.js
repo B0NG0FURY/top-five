@@ -263,6 +263,9 @@ function updateList(e) {
 function newListForm() {
     let div = document.querySelector("div.new-list-form");
     let form = document.createElement("form");
+    function addBr() {
+        return document.createElement("br");
+    }
 
     getCategories().then(categories => {
         let categoryLabel = document.createElement("label");
@@ -279,7 +282,7 @@ function newListForm() {
         let newCategory = document.createElement("input");
         newCategory.setAttribute("name", "assign-category");
         newCategory.setAttribute("placeholder", "Create New Category");
-        form.append(categoryLabel, select, newCategory);
+        form.append(categoryLabel, addBr(), select, addBr(), newCategory, addBr());
         addTitleInput();
         addItemInputs();
     });
@@ -290,21 +293,21 @@ function newListForm() {
         titleLabel.innerText = "Title";
         let title = document.createElement("input");
         title.setAttribute("name", "title");
-        form.append(titleLabel, title);
+        form.append(titleLabel, addBr(), title, addBr());
     }
 
     function addItemInputs() {
         let itemsLabel = document.createElement("label");
         itemsLabel.setAttribute("name", "items");
         itemsLabel.innerText = "Items";
-        form.append(itemsLabel);
+        form.append(itemsLabel, addBr());
 
         for (let i = 1; i < 6; i++) {
             let input = document.createElement("input");
             input.setAttribute("item-rank", i.toString());
             input.setAttribute("name", "items");
             input.setAttribute("placeholder", `Item #${i}`);
-            form.append(input);
+            form.append(input, addBr());
         }
     }
     div.appendChild(form);

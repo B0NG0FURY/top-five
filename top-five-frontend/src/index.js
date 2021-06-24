@@ -263,16 +263,11 @@ function updateList(e) {
 function newListForm() {
     let div = document.querySelector("div.new-list-form");
     let form = document.createElement("form");
-    let titleLabel = document.createElement("label")
-    titleLabel.setAttribute("for", "title")
-    titleLabel.innerText = "Title";
-    let title = document.createElement("input");
-    title.setAttribute("name", "title");
-    form.append(titleLabel, title);
-    
+
     getCategories().then(categories => {
         let categoryLabel = document.createElement("label");
         categoryLabel.setAttribute("name", "assign-category");
+        categoryLabel.innerText = "Category";
         let select = document.createElement("select");
         select.setAttribute("name", "assign-category");
         let option = document.createElement("option");
@@ -283,24 +278,34 @@ function newListForm() {
         categories.forEach(category => addCategory(category, select));
         let newCategory = document.createElement("input");
         newCategory.setAttribute("name", "assign-category");
-        newCategory.setAttribute("placeholder", "New Category");
+        newCategory.setAttribute("placeholder", "Create New Category");
         form.append(categoryLabel, select, newCategory);
+        addTitleInput();
+        addItemInputs();
     });
 
-    let itemsLabel = document.createElement("label");
-    itemsLabel.setAttribute("name", "items");
-    itemsLabel.innerText = "Items";
-    let ol = document.createElement("ol");
-
-    for (let i = 1; i < 6; i++) {
-        let li = document.createElement("li");
-        let input = document.createElement("input");
-        input.setAttribute("item-rank", i.toString());
-        input.setAttribute("name", "items");
-        li.append(input);
-        ol.append(li);
+    function addTitleInput() {
+        let titleLabel = document.createElement("label")
+        titleLabel.setAttribute("for", "title")
+        titleLabel.innerText = "Title";
+        let title = document.createElement("input");
+        title.setAttribute("name", "title");
+        form.append(titleLabel, title);
     }
-    form.append(itemsLabel, ol);
 
+    function addItemInputs() {
+        let itemsLabel = document.createElement("label");
+        itemsLabel.setAttribute("name", "items");
+        itemsLabel.innerText = "Items";
+        form.append(itemsLabel);
+
+        for (let i = 1; i < 6; i++) {
+            let input = document.createElement("input");
+            input.setAttribute("item-rank", i.toString());
+            input.setAttribute("name", "items");
+            input.setAttribute("placeholder", `Item #${i}`);
+            form.append(input);
+        }
+    }
     div.appendChild(form);
 }

@@ -74,6 +74,7 @@ li {
     width: 95%;
     margin-top: 20px;
     justify-items: center;
+    text-align: center;
 }
 
 .list-container {

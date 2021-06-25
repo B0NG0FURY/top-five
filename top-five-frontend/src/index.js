@@ -273,6 +273,7 @@ function newListForm() {
         categoryLabel.innerText = "Category";
         let select = document.createElement("select");
         select.setAttribute("name", "assign-category");
+        select.setAttribute("class", "assign-category");
         let option = document.createElement("option");
         option.text = "Assign Category:";
         let optionValue = 0;
@@ -282,7 +283,7 @@ function newListForm() {
         let newCategory = document.createElement("input");
         newCategory.setAttribute("name", "assign-category");
         newCategory.setAttribute("placeholder", "Create New Category");
-        form.append(categoryLabel, addBr(), select, addBr(), newCategory, addBr());
+        form.append(categoryLabel, addBr(), select, newCategory, addBr());
         addTitleInput();
         addItemInputs();
     });
@@ -313,6 +314,7 @@ function newListForm() {
         let saveBtn = document.createElement("button");
         saveBtn.setAttribute("class", "save-list-button");
         saveBtn.innerText = "Save";
+        saveBtn.addEventListener("click", (e) => createNewList());
         form.append(saveBtn);
     }
     div.appendChild(form);

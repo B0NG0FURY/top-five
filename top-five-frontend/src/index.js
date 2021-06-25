@@ -309,6 +309,11 @@ function newListForm() {
             input.setAttribute("placeholder", `Item #${i}`);
             form.append(input, addBr());
         }
+
+        let saveBtn = document.createElement("button");
+        saveBtn.setAttribute("class", "save-list-button");
+        saveBtn.innerText = "Save";
+        form.append(saveBtn);
     }
     div.appendChild(form);
 }

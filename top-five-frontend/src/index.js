@@ -16,6 +16,42 @@ class List {
     }
 }
 
+class formElement {
+    constructor(form) {
+        this.form = form;
+    }
+
+    get inputs() {
+        let inputs = this.form.querySelectorAll("input");
+        return Array.from(inputs);
+    }
+
+    get items() {
+        return this.inputs.slice(2);
+    }
+
+    get categorySelect() {
+        return parseInt(this.form.querySelector("select").value);
+    }
+
+    get newCategory() {
+        return this.inputs[0].value;
+    }
+
+    get title() {
+        return this.inputs[1].value;
+    }
+
+    item(i) {
+        return this.items[i].value;
+    }
+
+    item_rank(i) {
+        return parseInt(this.items[i].getAttribute("item-rank"));
+    }
+
+}
+
 class EditListElement {
     constructor(element) {
         this.element = element;
@@ -314,8 +350,40 @@ function newListForm() {
         let saveBtn = document.createElement("button");
         saveBtn.setAttribute("class", "save-list-button");
         saveBtn.innerText = "Save";
-        saveBtn.addEventListener("click", (e) => createNewList());
+        saveBtn.addEventListener("click", (e) => createNewList(e.target));
         form.append(saveBtn);
     }
     div.appendChild(form);
+}
+
+function createNewList(e) {
+    let form = new formElement(e.parentElement);
+    let configObject = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            "category": {
+                "name": form.newCategory
+            },
+            "list": {
+                "title": form.title,
+                "category_id": form.categorySelect,
+                "items_attributes": [
+                    { "name": form.item[0], "rank": form.item_rank[0] },
+                    { "name": form.item[1], "rank": form.item_rank[1] },
+                    { "name": form.item[2], "rank": form.item_rank[2] },
+                    { "name": form.item[3], "rank": form.item_rank[3] },
+                    { "name": form.item[4], "rank": form.item_rank[4] }
+                ]
+            }
+        })
+    }
+
+    fetch(`${LISTS_URL}`, configObject).then(resp => resp.json()).then(list => {
+        form.parentElement.innerHTML = "";
+        displayLists(list);
+    })
 }

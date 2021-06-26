@@ -8,6 +8,16 @@ class ListsController < ApplicationController
     end
 
     def create
+        list = List.new(list_params)
+        if params[:category][:name] !== ""
+            category = Category.find_or_create_by(name: params[:category][:name].titleize)
+            list.category_id = category.id
+        elsif params[:list][:category_id] > 0
+            list.category_id = params[:list][:category_id]
+        end
+        if list.save
+            render json: ListSerializer.new(list).to_serialized_json
+        end
     end
 
     def update

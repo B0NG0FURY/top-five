@@ -7,6 +7,9 @@ class ListsController < ApplicationController
         end
     end
 
+    def create
+    end
+
     def update
         list = List.find_by_id(params[:id])
         if list.update(list_params)

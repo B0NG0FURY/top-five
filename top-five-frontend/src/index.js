@@ -383,7 +383,12 @@ function createNewList(e) {
     }
 
     fetch(`${LISTS_URL}`, configObject).then(resp => resp.json()).then(list => {
+        if (form.newCategory !== "") {
+            let select = document.querySelector("select#categories");
+            let options = Array.from(select.options);
+            addCategory({"id": options.length, "name": form.newCategory}, select);
+        }
         form.parentElement.innerHTML = "";
         displayLists(list);
-    })
+    });
 }

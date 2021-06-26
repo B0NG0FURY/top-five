@@ -368,15 +368,15 @@ function createNewList(e) {
             "category": {
                 "name": form.newCategory
             },
+            "category_id": form.categorySelect,
             "list": {
                 "title": form.title,
-                "category_id": form.categorySelect,
                 "items_attributes": [
-                    { "name": form.item[0], "rank": form.item_rank[0] },
-                    { "name": form.item[1], "rank": form.item_rank[1] },
-                    { "name": form.item[2], "rank": form.item_rank[2] },
-                    { "name": form.item[3], "rank": form.item_rank[3] },
-                    { "name": form.item[4], "rank": form.item_rank[4] }
+                    { "name": form.item(0), "rank": form.item_rank(0) },
+                    { "name": form.item(1), "rank": form.item_rank(1) },
+                    { "name": form.item(2), "rank": form.item_rank(2) },
+                    { "name": form.item(3), "rank": form.item_rank(3) },
+                    { "name": form.item(4), "rank": form.item_rank(4) }
                 ]
             }
         })

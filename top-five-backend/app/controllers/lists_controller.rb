@@ -9,7 +9,7 @@ class ListsController < ApplicationController
 
     def create
         list = List.new(list_params)
-        if params[:category][:name] !== ""
+        if params[:category][:name] != ""
             category = Category.find_or_create_by(name: params[:category][:name].titleize)
             list.category_id = category.id
         elsif params[:list][:category_id] > 0

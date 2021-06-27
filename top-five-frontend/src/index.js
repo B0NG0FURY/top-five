@@ -99,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getCategories().then(categories => {
         let div = document.querySelector("div.category-select");
+        div.innerHTML = "";
         let select = document.createElement("select");
         let option = document.createElement("option");
         option.text = "Select Category:";
@@ -129,22 +130,26 @@ function addCategory(category, element) {
 }
 
 function getLists(e) {
-    fetch(`${CATEGORIES_URL}/${parseInt(e)}/lists`).then(resp => resp.json()).then(lists => displayLists(lists));
+    fetch(`${CATEGORIES_URL}/${parseInt(e)}/lists`).then(resp => resp.json()).then(lists => displayAllLists(lists));
 }
 
-function displayLists(lists) {
+function displayAllLists(lists) {
     let listContainer = document.querySelector("div.list-container");
     listContainer.innerHTML = "";
     lists.forEach(listObject => {
-        let list = new List(listObject["id"], listObject["title"]);
-
-        let div = document.createElement("div");
-        div.setAttribute("class", "list");
-        div.setAttribute("data-list-id", `${list.id}`)
-        
-        makeListElement(div, list, listObject);
-        listContainer.append(div)
+        displayList(listObject, listContainer);
     });
+}
+
+function displayList(listObject, listContainer) {
+    let list = new List(listObject["id"], listObject["title"]);
+
+    let div = document.createElement("div");
+    div.setAttribute("class", "list");
+    div.setAttribute("data-list-id", `${list.id}`)
+    
+    makeListElement(div, list, listObject);
+    listContainer.append(div);
 }
 
 function makeListElement(div, list, listObject) {
@@ -383,13 +388,12 @@ function createNewList(e) {
     }
 
     fetch(`${LISTS_URL}`, configObject).then(resp => resp.json()).then(list => {
-        if (form.newCategory !== "") {
-            let select = document.querySelector("select#categories");
-            let options = Array.from(select.options);
-            let category = {"id": list["category_id"], "name": form.newCategory}
-            addCategory(category, select);
+        if (form.newCategory.length !== 0) {
+            getCategories();
         }
         form.parentElement.innerHTML = "";
-        displayLists(list);
+        let listContainer = document.querySelector("div.list-container");
+        listContainer.innerHTML = "";
+        makeListElement(list, listContainer);
     });
 }

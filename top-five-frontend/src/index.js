@@ -386,7 +386,8 @@ function createNewList(e) {
         if (form.newCategory !== "") {
             let select = document.querySelector("select#categories");
             let options = Array.from(select.options);
-            addCategory({"id": options.length, "name": form.newCategory}, select);
+            let category = {"id": list["category_id"], "name": form.newCategory}
+            addCategory(category, select);
         }
         form.parentElement.innerHTML = "";
         displayLists(list);

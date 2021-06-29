@@ -112,7 +112,9 @@ document.addEventListener("DOMContentLoaded", () => {
         div.appendChild(select);
         select.addEventListener("change", (e) => {
             e.preventDefault();
-            getLists(e.target.value);
+            if (e.target.value !== "Select Category:") {
+                getLists(e.target.value);
+            }
         })
     });
 })
@@ -253,7 +255,7 @@ function editList(e) {
     editInput(title);
     ol.childNodes.forEach(li => editInput(li));
     
-    let submit = document.querySelector("button.edit-submit");
+    let submit = e.parentElement.querySelector("button.edit-submit");
     submit.style.display = "inline";
     submit.addEventListener("click", (e) => updateList(e.target));
 }
@@ -387,13 +389,23 @@ function createNewList(e) {
         })
     }
 
-    fetch(`${LISTS_URL}`, configObject).then(resp => resp.json()).then(list => {
-        if (form.newCategory.length !== 0) {
-            getCategories();
-        }
+    fetch(`${LISTS_URL}`, configObject).then(resp => resp.json()).then(listObject => {
         form.parentElement.innerHTML = "";
-        let listContainer = document.querySelector("div.list-container");
-        listContainer.innerHTML = "";
-        makeListElement(list, listContainer);
+        addNewCategory(form.newCategory, listObject["category_id"]);
+        displayNewList(listObject);
     });
+}
+
+function addNewCategory(newCategory, id) {
+    if (newCategory.length > 0) {
+        let select = document.querySelector("select#categories");
+        let category = {"id": id, "name": newCategory};
+        addCategory(category, select);
+    }
+}
+
+function displayNewList(listObject) {
+    let listContainer = document.querySelector("div.list-container");
+    listContainer.innerHTML = "";
+    displayList(listObject, listContainer);
 }

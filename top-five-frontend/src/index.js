@@ -331,6 +331,25 @@ function newListForm() {
         newCategory.setAttribute("name", "assign-category");
         newCategory.setAttribute("placeholder", "Create New Category");
         form.append(categoryLabel, addBr(), select, newCategory, addBr());
+
+        select.addEventListener("change", (e) => {
+            e.preventDefault();
+            if (e.target.value !== "0") {
+                newCategory.setAttribute("disabled", "disabled");
+            } else {
+                newCategory.removeAttribute("disabled");
+            }
+        });
+
+        newCategory.addEventListener("input", (e) => {
+            e.preventDefault();
+            if (e.target.value.length > 0) {
+                select.setAttribute("disabled", "disabled");
+            } else {
+                select.removeAttribute("disabled");
+            }
+        });
+
         addTitleInput();
         addItemInputs();
     });

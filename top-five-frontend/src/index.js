@@ -305,6 +305,10 @@ function updateList(e) {
 
 function newListForm() {
     let div = document.querySelector("div.new-list-form");
+    if (div.innerHTML !== "") {
+        div.innerHTML = "";
+        return;
+    }
     let form = document.createElement("form");
     function addBr() {
         return document.createElement("br");

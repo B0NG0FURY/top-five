@@ -361,7 +361,10 @@ function newListForm() {
         let saveBtn = document.createElement("button");
         saveBtn.setAttribute("class", "save-list-button");
         saveBtn.innerText = "Save";
-        saveBtn.addEventListener("click", (e) => createNewList(e.target));
+        saveBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            createNewList(e.target)
+        });
         form.append(saveBtn);
     }
     div.appendChild(form);
@@ -394,7 +397,7 @@ function createNewList(e) {
     }
 
     fetch(`${LISTS_URL}`, configObject).then(resp => resp.json()).then(listObject => {
-        form.parentElement.innerHTML = "";
+        e.parentElement.parentElement.innerHTML = "";
         addNewCategory(form.newCategory, listObject["category_id"]);
         displayNewList(listObject);
     });

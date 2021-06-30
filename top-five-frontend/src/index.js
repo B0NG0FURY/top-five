@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.innerHTML = "";
         let select = document.createElement("select");
         let option = document.createElement("option");
-        option.text = "Select Category:";
+        option.text = "View By Category:";
         select.setAttribute("name", "categories");
         select.setAttribute("id", "categories");
         select.appendChild(option);

@@ -24,8 +24,8 @@ ol {
 
 li {
     padding-bottom: 30px;
-    padding-right: 20px;
     font-size: 1.05em;
+    margin-right: 5px;
 }
 
 .list-nav {
@@ -113,6 +113,15 @@ div.list button.edit-submit {
 
 button.swap-rank {
     float: right;
+    margin-left: 5px;
+}
+
+button#rank-up {
+    margin-left: 15px;
+}
+
+button#rank-down {
+    margin-left: 5px;
 }
 
 #rank-up:before {

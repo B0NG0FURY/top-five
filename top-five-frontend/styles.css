@@ -83,7 +83,7 @@ li {
 }
 
 .list-container {
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     height: auto;
     display: inline-flex;
@@ -92,14 +92,16 @@ li {
 }
 
 .list {
-    padding-top: 10px;
+    padding-top: 5px;
     background-color: bisque;
     width: 280px;
-    height: 355px;
+    height: 370px;
 }
 
 div.list p {
     padding-left: 10px;
+    font-family: 'Satisfy', cursive, Arial;
+    font-size: 20px;
 }
 
 div.list button {

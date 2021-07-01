@@ -25,6 +25,7 @@ ol {
 li {
     padding-bottom: 30px;
     font-size: 1.05em;
+    font-family: 'Lato', sans-serif;
     margin-right: 5px;
 }
 
@@ -92,7 +93,7 @@ li {
 }
 
 .list {
-    padding-top: 5px;
+    padding-top: 3px;
     background-color: bisque;
     width: 280px;
     height: 370px;
@@ -102,6 +103,7 @@ div.list p {
     padding-left: 10px;
     font-family: 'Satisfy', cursive, Arial;
     font-size: 20px;
+    border-bottom: 2px solid teal;
 }
 
 div.list button {

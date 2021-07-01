@@ -118,6 +118,7 @@ div.list button:hover {
 
 div.list button.edit {
     margin-left: 10px;
+    margin-top: -7px;
 }
 
 div.list button.edit-submit {

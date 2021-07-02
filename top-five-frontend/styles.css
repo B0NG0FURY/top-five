@@ -87,7 +87,6 @@ li {
 }
 
 .list-container {
-    margin-top: 10px;
     width: 100%;
     height: auto;
     display: inline-flex;
@@ -102,6 +101,8 @@ li {
     width: 280px;
     height: 370px;
     border: 3px solid rgb(56, 55, 55);
+    box-shadow: 2px 2px rgb(34, 22, 22), 4px 4px rgb(34, 22, 22), 6px 6px whitesmoke,
+    8px 8px rgb(34, 22, 22), 10px 10px rgb(34, 22, 22), 12px 12px whitesmoke, 14px 14px rgb(34, 22, 22), 16px 16px rgb(34, 22, 22);
 }
 
 div.list p {

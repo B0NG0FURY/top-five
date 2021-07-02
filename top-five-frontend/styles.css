@@ -20,13 +20,14 @@ ol {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+    border-bottom: 2px solid teal;
 }
 
 li {
     padding-bottom: 30px;
     font-size: 1.05em;
     font-family: 'Lato', sans-serif;
-    margin-right: 5px;
+    margin: 0px 5px 0px -15px;
 }
 
 .list-nav {
@@ -93,6 +94,7 @@ li {
 }
 
 .list {
+    padding: 3px 0px 15px 0px;
     padding-top: 3px;
     background-color: bisque;
     width: 280px;
@@ -118,13 +120,12 @@ div.list button:hover {
 }
 
 div.list button.edit {
-    margin-left: 10px;
-    margin-top: -7px;
+    margin-left: 8px;
+    margin-top: -12px;
 }
 
 div.list button.edit-submit {
-    margin-left: 102px;
-    margin-bottom: 30px;
+    margin: -25px 0px 30px 102px;
 }
 
 button.swap-rank {

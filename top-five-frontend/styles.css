@@ -97,6 +97,7 @@ li {
     background-color: bisque;
     width: 280px;
     height: 370px;
+    border: 3px solid rgb(56, 55, 55);
 }
 
 div.list p {

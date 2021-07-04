@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         div.appendChild(select);
         select.addEventListener("change", (e) => {
             e.preventDefault();
-            if (e.target.value !== "Select Category:") {
+            if (e.target.value !== "View By Category:") {
                 getLists(e.target.value);
             }
         })

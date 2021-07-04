@@ -310,6 +310,7 @@ function newListForm() {
         return;
     }
     let form = document.createElement("form");
+
     function addBr() {
         return document.createElement("br");
     }
@@ -322,7 +323,7 @@ function newListForm() {
         select.setAttribute("name", "assign-category");
         select.setAttribute("class", "assign-category");
         let option = document.createElement("option");
-        option.text = "Assign Category:";
+        option.text = "Select Existing Category:";
         let optionValue = 0;
         option.value = `${optionValue.toString()}`;
         select.appendChild(option);
@@ -330,7 +331,7 @@ function newListForm() {
         let newCategory = document.createElement("input");
         newCategory.setAttribute("name", "assign-category");
         newCategory.setAttribute("placeholder", "Create New Category");
-        form.append(categoryLabel, addBr(), select, newCategory, addBr());
+        form.append(categoryLabel, addBr(), select, addBr(), newCategory, addBr());
 
         select.addEventListener("change", (e) => {
             e.preventDefault();

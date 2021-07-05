@@ -5,7 +5,8 @@ body {
 }
 
 header {
-    background-color: rgb(109, 109, 255);
+    background-color: teal;
+    color: cornsilk;
     margin: auto;
     height: 90px;
     width: 50%;

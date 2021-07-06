@@ -341,9 +341,11 @@ function newListForm() {
         select.addEventListener("change", (e) => {
             e.preventDefault();
             if (e.target.value !== "0") {
+                newCategory.style.borderBottomColor = "gray";
                 newCategory.setAttribute("disabled", "disabled");
             } else {
                 newCategory.removeAttribute("disabled");
+                newCategory.style.borderBottomColor = "black";
             }
         });
 

@@ -102,7 +102,8 @@ document.addEventListener("DOMContentLoaded", () => {
         div.innerHTML = "";
         let select = document.createElement("select");
         let option = document.createElement("option");
-        option.text = "View By Category:";
+        option.value = "Recent";
+        option.text = "Most Recent";
         select.setAttribute("name", "categories");
         select.setAttribute("id", "categories");
         select.appendChild(option);
@@ -112,11 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
         div.appendChild(select);
         select.addEventListener("change", (e) => {
             e.preventDefault();
-            if (e.target.value !== "View By Category:") {
-                getLists(e.target.value);
-            }
+            getLists(e.target.value);
         })
     });
+
+    getLists("Recent");
 })
 
 function getCategories() {
@@ -132,7 +133,11 @@ function addCategory(category, element) {
 }
 
 function getLists(e) {
-    fetch(`${CATEGORIES_URL}/${parseInt(e)}/lists`).then(resp => resp.json()).then(lists => displayAllLists(lists));
+    if (e === "Recent") {
+        fetch(LISTS_URL).then(resp => resp.json()).then(lists => displayAllLists(lists));
+    } else {
+        fetch(`${CATEGORIES_URL}/${parseInt(e)}/lists`).then(resp => resp.json()).then(lists =>  displayAllLists(lists));
+    }
 }
 
 function displayAllLists(lists) {

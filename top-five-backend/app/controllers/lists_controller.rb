@@ -4,6 +4,9 @@ class ListsController < ApplicationController
             category = Category.find_by_id(params[:category_id])
             lists = category.lists
             render json: ListSerializer.new(lists).to_serialized_json
+        else
+            lists = List.most_recent
+            render json: ListSerializer.new(lists).to_serialized_json
         end
     end
 

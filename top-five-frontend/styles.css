@@ -104,12 +104,14 @@ li {
 }
 
 .save-list-button {
+    margin-top: 10px;
     padding: 2px 14px;
     font-size: 14px;
 }
 
 .assign-category {
-    width: 230px;
+    width: 234px;
+    margin-bottom: 5px;
 }
 
 .list-container {

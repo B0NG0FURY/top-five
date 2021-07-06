@@ -129,8 +129,9 @@ li {
     width: 280px;
     height: 370px;
     border: 3px solid rgb(56, 55, 55);
-    box-shadow: 2px 2px rgb(34, 22, 22), 4px 4px whitesmoke,
-    6px 6px rgb(34, 22, 22), 8px 8px rgb(34, 22, 22), 10px 10px whitesmoke, 12px 12px rgb(34, 22, 22), 14px 14px rgb(34, 22, 22);
+    box-shadow: 1px 1px rgb(34, 22, 22), 3px 3px whitesmoke,
+    4px 4px rgb(34, 22, 22), 5px 5px whitesmoke, 7px 7px whitesmoke, 8px 8px rgb(34, 22, 22), 9px 9px whitesmoke, 11px 11px whitesmoke, 12px 12px rgb(34, 22, 22), 13px 13px whitesmoke,
+    14px 14px whitesmoke, 16px 16px rgb(34, 22, 22);
 }
 
 div.list p {

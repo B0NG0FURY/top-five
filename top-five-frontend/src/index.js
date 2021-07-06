@@ -366,6 +366,7 @@ function newListForm() {
         titleLabel.innerText = "Title";
         let title = document.createElement("input");
         title.setAttribute("name", "title");
+        title.setAttribute("placeholder", "New List Title");
         form.append(titleLabel, addBr(), title, addBr());
     }
 

@@ -420,6 +420,10 @@ function createNewList(e) {
         e.parentElement.parentElement.innerHTML = "";
         addNewCategory(form.newCategory, listObject["category_id"]);
         displayNewList(listObject);
+    }).catch(() => {
+        let error = document.createElement("p");
+        error.innerText = "List failed to save. Make sure you have a category and a title for the list."
+        e.parentElement.parentElement.prepend(error);
     });
 }
 

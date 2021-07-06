@@ -89,6 +89,10 @@ li {
     font-family: 'Lato', sans-serif;
 }
 
+.new-list-form p {
+    color: red;
+}
+
 .new-list-form input {
     border: none;
     border-bottom: 2px solid black;

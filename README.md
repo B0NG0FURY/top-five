@@ -10,6 +10,8 @@ Move to the 'top-five-backend' directory. Run 'bundle install'. Connect to Postg
 
 ## Usage
 
+Upon the page loading the user can choose whether to view lists by category or create a new list. Clicking on "Create New List" will bring up the form for a new list where the user can select an existing category for the list or create a whole new one, add a title for the list and the items in the order they would like them ranked. New lists MUST HAVE a category and a title in order to be saved. An error will appear above the form if this criteria is not met to inform the user. The ranks of items in lists can be changed with the arrow buttons and titles and items can be changed by clicking the edit button and making the desired changes. 
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -2,6 +2,7 @@ class List < ApplicationRecord
     belongs_to :category
     has_many :items
     accepts_nested_attributes_for :items
+    validates :title, presence: true
     before_save :normalize_title
 
     def items_ranked

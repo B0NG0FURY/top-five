@@ -16,6 +16,14 @@ class List {
     }
 }
 
+class Item {
+    constructor(id, name, rank) {
+        this.id = id;
+        this.name = name;
+        this.rank = rank;
+    }
+}
+
 class formElement {
     constructor(form) {
         this.form = form;
@@ -75,14 +83,6 @@ class EditListElement {
 
     item(i) {
         return this.items[i].firstChild.value;
-    }
-}
-
-class Item {
-    constructor(id, name, rank) {
-        this.id = id;
-        this.name = name;
-        this.rank = rank;
     }
 }
 

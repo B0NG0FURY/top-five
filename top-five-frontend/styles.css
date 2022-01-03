@@ -194,3 +194,14 @@ button#rank-down {
 button.edit-submit {
     display: none;
 }
+
+button.night-mode {
+    position: absolute;
+    top: 30px;
+    left: 90px;
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 const BASE_URL = "http://localhost:3000"
 const CATEGORIES_URL = `${BASE_URL}/categories`
 const LISTS_URL = `${BASE_URL}/lists`
+const BODY_IMG = "url('./assets/images/paper-background.png')";
 
 class Category {
     constructor(id, name) {
@@ -87,6 +88,8 @@ class EditListElement {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+    nightModeBtn();
+
     let newDiv = document.querySelector("div.new-list");
         let newBtn = document.createElement("button");
         newBtn.setAttribute("class", "new-list-btn");
@@ -119,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     getLists("Recent");
 })
+
 
 function getCategories() {
     return fetch(CATEGORIES_URL).then(resp => resp.json());
@@ -447,4 +451,35 @@ function displayNewList(listObject) {
     let listContainer = document.querySelector("div.list-container");
     listContainer.innerHTML = "";
     displayList(listObject, listContainer);
+}
+
+function nightModeBtn() {
+    let btn = document.createElement("button");
+    btn.innerText = "Night Mode";
+    btn.className = "night-mode";
+    btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        toggleNightMode(e);
+    })
+    let div = document.createElement("div");
+    div.append(btn);
+    let main = document.querySelector("main");
+    main.prepend(div);
+}
+
+function toggleNightMode(e) {
+    let body = document.querySelector("body");
+    if (body.style.backgroundColor == "") {
+        body.style.backgroundImage = "none";
+        body.style.backgroundColor = "black";
+        e.target.innerText = "Day Mode";
+        e.target.style.color = "black";
+        e.target.style.backgroundColor = "white";
+    } else {
+        body.style.backgroundImage = BODY_IMG;
+        body.style.backgroundColor = "";
+        e.target.innerText = "Night Mode";
+        e.target.style.color = "white";
+        e.target.style.backgroundColor = "black";
+    }
 }

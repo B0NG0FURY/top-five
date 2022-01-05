@@ -193,17 +193,27 @@ function displayItem(itemObject, listElement) {
     li.setAttribute("data-item-rank", `${item.rank}`);
     li.innerText = `${item.name}`;
     li.addEventListener("click", (e) => selectListItem(e.target));
-    rankButtons(item, li);
+    // rankButtons(item, li);
     listElement.appendChild(li);
 }
 
 function selectListItem(e) {
     e.classList.toggle("selected");
-    let siblings = Array.from(e.parentElement.children);
-    siblings.filter(li => li !== e).forEach(li => li.classList.remove("selected"));
+
+    if (e.classList.contains("selected")) {
+        let siblings = Array.from(e.parentElement.children);
+        siblings.filter(li => li !== e).forEach(li => li.classList.remove("selected"));
+
+        // FIND A WAY TO PREVENT MULTIPLE BUTTONS FROM BEING CREATED WHEN SELECTING ANOTHER ITEM WHEN ONE IS ALREADY SELECTED
+
+        rankButtons(e);
+    } else {
+        let list = e.parentElement.parentElement;
+        Array.from(list.querySelectorAll(".swap-rank")).forEach(btn => btn.remove());
+    }
 }
 
-function rankButtons(item, li) {
+function rankButtons(li) {
     let rankUp = document.createElement("button");
     rankUp.setAttribute("class", "swap-rank");
     rankUp.setAttribute("id", "rank-up");
@@ -212,12 +222,12 @@ function rankButtons(item, li) {
     rankDown.setAttribute("class", "swap-rank");
     rankDown.setAttribute("id", "rank-down");
 
-    if (item.rank === 1) {
-        li.append(rankDown);
-    } else if (item.rank === 5) {
-        li.append(rankUp);
-    } else {
-        li.append(rankDown, rankUp);
+    li.parentElement.parentElement.append(rankDown, rankUp);
+
+    if (li.getAttribute("data-item-rank") == 1) {
+        rankUp.disabled = true;
+    } else if (li.getAttribute("data-item-rank") == 5) {
+        rankDown.disabled = true;
     }
     rankUp.addEventListener("click", (e) => swapRank(e.target));
     rankDown.addEventListener("click", (e) => swapRank(e.target));

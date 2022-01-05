@@ -124,11 +124,12 @@ li {
 }
 
 .list {
+    position: relative;
     padding: 3px 0px 15px 0px;
     padding-top: 3px;
-    margin-bottom: 20px;
+    margin: 0px 10px 20px 10px;
     background-color: bisque;
-    width: 280px;
+    width: 330px;
     height: 370px;
     border: 3px solid rgb(56, 55, 55);
     box-shadow: 1px 1px rgb(34, 22, 22), 3px 3px whitesmoke,
@@ -149,13 +150,13 @@ div.list button {
     font-family: Arial;
 }
 
-div.list button:hover {
-    background-color: rgb(184, 181, 181);
-}
-
 div.list button.edit {
     margin-left: 8px;
     margin-top: -12px;
+}
+
+div.list li.item {
+    width: 250px;
 }
 
 div.list li.item:hover {
@@ -179,17 +180,32 @@ div.list button.edit-submit {
     margin: -25px 0px 30px 102px;
 }
 
-button.swap-rank {
-    float: right;
-    margin-left: 5px;
+.swap-rank {
+    border: none;
+    background-color: bisque;
+    color: red;
+    font-size: 32px;
 }
 
-button#rank-up {
-    margin-left: 15px;
+.swap-rank:hover {
+    background-color: bisque;
+    color: rgb(122, 10, 10);
 }
 
-button#rank-down {
-    margin-left: 5px;
+button.swap-rank:disabled {
+    color: gray;
+}
+
+div.list button#rank-up {
+    position: absolute;
+    top: 130px;
+    right: 12px;
+}
+
+div.list button#rank-down {
+    position: absolute;
+    bottom: 130px;
+    right: 12px;
 }
 
 #rank-up:before {

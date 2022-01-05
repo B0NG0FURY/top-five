@@ -158,6 +158,15 @@ div.list button.edit {
     margin-top: -12px;
 }
 
+div.list li.item:hover {
+    border: 3px solid black;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: rgb(238, 238, 104);
+}
+
 div.list input {
     border: none;
     border-bottom: 2px solid black;

@@ -192,8 +192,15 @@ function displayItem(itemObject, listElement) {
     li.setAttribute("data-item-id", `${item.id}`);
     li.setAttribute("data-item-rank", `${item.rank}`);
     li.innerText = `${item.name}`;
+    li.addEventListener("click", (e) => selectListItem(e.target));
     rankButtons(item, li);
     listElement.appendChild(li);
+}
+
+function selectListItem(e) {
+    e.classList.toggle("selected");
+    let siblings = Array.from(e.parentElement.children);
+    siblings.filter(li => li !== e).forEach(li => li.classList.remove("selected"));
 }
 
 function rankButtons(item, li) {

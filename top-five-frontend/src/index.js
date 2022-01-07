@@ -198,16 +198,23 @@ function displayItem(itemObject, listElement) {
 }
 
 function selectListItem(e) {
-    e.classList.toggle("selected");
+    toggleSelect(e);
 
-    if (e.classList.contains("selected")) {
+    if (e.tagName === "LI" && e.classList.contains("selected")) {
         let siblings = Array.from(e.parentElement.children);
         siblings.filter(li => li !== e).forEach(li => li.classList.remove("selected"));
         removeRankButtons(e.parentElement.parentElement);
         rankButtons(e);
     } else {
         let list = e.parentElement.parentElement;
-        removeRankButtons(e.parentElement.parentElement);
+        removeRankButtons(list);
+    }
+}
+
+// li elements can only be selected when not in edit mode
+function toggleSelect(li) {
+    if (li.children.length === 0) {
+        li.classList.toggle("selected");
     }
 }
 
@@ -288,6 +295,9 @@ function editList(e) {
 }
 
 function editInput(element) {
+    if (element.classList.contains("selected")) {
+        element.click();
+    }
     let text = element.innerText;
     let input = document.createElement("input");
     if (element.tagName === "LI") {
@@ -297,6 +307,7 @@ function editInput(element) {
     }
     input.setAttribute("value", `${text}`);
     element.innerHTML = "";
+    element.className = "edit-item";
     element.append(input);
 }
 

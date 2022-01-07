@@ -203,13 +203,11 @@ function selectListItem(e) {
     if (e.classList.contains("selected")) {
         let siblings = Array.from(e.parentElement.children);
         siblings.filter(li => li !== e).forEach(li => li.classList.remove("selected"));
-
-        // FIND A WAY TO PREVENT MULTIPLE BUTTONS FROM BEING CREATED WHEN SELECTING ANOTHER ITEM WHEN ONE IS ALREADY SELECTED
-
+        removeRankButtons(e.parentElement.parentElement);
         rankButtons(e);
     } else {
         let list = e.parentElement.parentElement;
-        Array.from(list.querySelectorAll(".swap-rank")).forEach(btn => btn.remove());
+        removeRankButtons(e.parentElement.parentElement);
     }
 }
 
@@ -233,15 +231,19 @@ function rankButtons(li) {
     rankDown.addEventListener("click", (e) => swapRank(e.target));
 }
 
+function removeRankButtons(list) {
+    Array.from(list.querySelectorAll(".swap-rank")).forEach(btn => btn.remove());
+}
+
 function swapRank(e) {
     let higherRank;
     let lowerRank;
     if (e.id === "rank-down") {
-        higherRank = e.parentElement;
-        lowerRank = e.parentElement.nextSibling;
+        higherRank = e.parentElement.querySelector(".selected");
+        lowerRank = higherRank.nextSibling;
     } else if (e.id === "rank-up") {
-        higherRank = e.parentElement.previousSibling;
-        lowerRank = e.parentElement;
+        lowerRank = e.parentElement.querySelector(".selected");
+        higherRank = lowerRank.previousSibling;
     }
 
     let configObject = {
@@ -263,13 +265,12 @@ function swapRank(e) {
         higherRank.setAttribute("data-item-rank", `${higherItem.rank}`);
         higherRank.setAttribute("data-item-id", `${higherItem.id}`);
         higherRank.innerText = `${higherItem.name}`;
-        rankButtons(higherItem, higherRank);
-
 
         lowerRank.setAttribute("data-item-rank", `${lowerItem.rank}`);
         lowerRank.setAttribute("data-item-id", `${lowerItem.id}`);
         lowerRank.innerText = `${lowerItem.name}`;
-        rankButtons(lowerItem, lowerRank);
+
+        e.id === "rank-down" ? higherRank.nextSibling.click() : lowerRank.previousSibling.click()
     });
 }
 

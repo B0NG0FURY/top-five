@@ -177,7 +177,7 @@ div.list input {
 }
 
 div.list button.edit-submit {
-    margin: -25px 0px 30px 102px;
+    margin: -25px 0px 30px 135px;
 }
 
 .swap-rank {
@@ -218,6 +218,12 @@ div.list button#rank-down {
 
 button.edit-submit {
     display: none;
+}
+
+button.delete-list {
+    position: absolute;
+    top: 22px;
+    right: 25px;
 }
 
 button.night-mode {

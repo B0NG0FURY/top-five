@@ -177,12 +177,19 @@ function makeListElement(div, list, listObject) {
         listObject["items_ranked"].forEach(item => {
             displayItem(item, ol);
         });
+
+        let deleteBtn = document.createElement("button");
+        deleteBtn.setAttribute("class", "delete-list");
+        deleteBtn.setAttribute("data-list-id", `${list.id}`);
+        deleteBtn.innerText = "Delete";
+        deleteBtn.style.display = "none";
+
         let submit = document.createElement("button");
         submit.setAttribute("class", "edit-submit");
         submit.setAttribute("data-list-id", `${list.id}`);
         submit.innerText = "Submit";
         submit.style.display = "none";
-        div.append(p, edit, ol, submit);
+        div.append(p, edit, ol, deleteBtn, submit);
 }
 
 function displayItem(itemObject, listElement) {
@@ -288,6 +295,9 @@ function editList(e) {
     e.style.display = "none";
     editInput(title);
     ol.childNodes.forEach(li => editInput(li));
+
+    let deleteBtn = e.parentElement.querySelector("button.delete-list");
+    deleteBtn.style.display = "inline";
     
     let submit = e.parentElement.querySelector("button.edit-submit");
     submit.style.display = "inline";

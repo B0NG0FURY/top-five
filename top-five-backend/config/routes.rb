@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :items
-  resources :lists, only: [:index, :create, :update]
+  resources :lists
   resources :categories, only: [:index, :create] do
     resources :lists, only: [:index]
   end

@@ -75,7 +75,7 @@ class EditListElement {
     }
 
     get items() {
-        return this.element.lastChild.previousSibling.childNodes;
+        return this.element.querySelectorAll("li")
     }
 
     item_id(i) {
@@ -200,7 +200,6 @@ function displayItem(itemObject, listElement) {
     li.setAttribute("data-item-rank", `${item.rank}`);
     li.innerText = `${item.name}`;
     li.addEventListener("click", (e) => selectListItem(e.target));
-    // rankButtons(item, li);
     listElement.appendChild(li);
 }
 
@@ -298,6 +297,8 @@ function editList(e) {
 
     let deleteBtn = e.parentElement.querySelector("button.delete-list");
     deleteBtn.style.display = "inline";
+    let listId = parseInt(deleteBtn.getAttribute("data-list-id"));
+    deleteBtn.addEventListener("click", (e) => deleteList(e.target));
     
     let submit = e.parentElement.querySelector("button.edit-submit");
     submit.style.display = "inline";
@@ -319,6 +320,25 @@ function editInput(element) {
     element.innerHTML = "";
     element.className = "edit-item";
     element.append(input);
+}
+
+function deleteList(e) {
+    let list = e.parentElement;
+    let listId = parseInt(list.getAttribute("data-list-id"));
+
+    let configObject = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            "list_id": listId
+        })
+    }
+
+    fetch(`${LISTS_URL}/${listId}`, configObject).then(resp => resp.json()).then(resp => console.log(resp.success))
+    list.remove();
 }
 
 function updateList(e) {

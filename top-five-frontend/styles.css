@@ -76,7 +76,7 @@ li {
     font-family: Arial;
 }
 
-.new-list-btn:hover, .save-list-button:hover {
+.new-list-btn:hover, .save-list-button:hover, button.edit:hover, button.delete-list:hover, button.edit-submit:hover {
     background-color: rgb(184, 181, 181);
 }
 
@@ -181,15 +181,23 @@ div.list button.edit-submit {
 }
 
 .swap-rank {
-    border: none;
+    border: .5px solid rgb(248, 193, 125);
     background-color: bisque;
     color: red;
     font-size: 32px;
+    box-shadow: 0 9px #999;
 }
 
 .swap-rank:hover {
     background-color: bisque;
     color: rgb(122, 10, 10);
+}
+
+.swap-rank:active {
+    background-color: bisque;
+    color: rgb(122, 10, 10);
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
 }
 
 button.swap-rank:disabled {

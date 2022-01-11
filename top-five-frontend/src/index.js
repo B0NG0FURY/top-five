@@ -399,6 +399,7 @@ function newListForm() {
         let newCategory = document.createElement("input");
         newCategory.setAttribute("name", "assign-category");
         newCategory.setAttribute("placeholder", "Create New Category");
+        newCategory.setAttribute("id", "form-space");
         form.append(categoryLabel, addBr(), select, addBr(), newCategory, addBr());
 
         select.addEventListener("change", (e) => {
@@ -432,6 +433,7 @@ function newListForm() {
         let title = document.createElement("input");
         title.setAttribute("name", "title");
         title.setAttribute("placeholder", "New List Title");
+        title.setAttribute("id", "form-space")
         form.append(titleLabel, addBr(), title, addBr());
     }
 
@@ -528,15 +530,14 @@ function nightModeBtn() {
 
 function toggleNightMode(e) {
     let body = document.querySelector("body");
-    if (body.style.backgroundColor == "") {
+    if (body.style.backgroundColor !== "black") {
         body.style.backgroundImage = "none";
         body.style.backgroundColor = "black";
         e.target.innerText = "Day Mode";
         e.target.style.color = "black";
         e.target.style.backgroundColor = "white";
     } else {
-        body.style.backgroundImage = BODY_IMG;
-        body.style.backgroundColor = "";
+        body.style.backgroundColor = "bisque";
         e.target.innerText = "Night Mode";
         e.target.style.color = "white";
         e.target.style.backgroundColor = "black";

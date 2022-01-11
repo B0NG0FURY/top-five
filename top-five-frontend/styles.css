@@ -1,7 +1,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url("./assets/images/paper-background.png");
+    background-color: bisque;
 }
 
 header {
@@ -26,7 +26,7 @@ ol {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
-    border-bottom: 2px solid teal;
+    border-bottom: 2px solid rgb(76, 149, 218);
 }
 
 li {
@@ -103,6 +103,10 @@ li {
     font-size: 16px;
 }
 
+#form-space {
+    margin-bottom: 14px;
+}
+
 .save-list-button {
     margin-top: 10px;
     padding: 2px 14px;
@@ -128,7 +132,7 @@ li {
     padding: 3px 0px 15px 0px;
     padding-top: 3px;
     margin: 0px 10px 20px 10px;
-    background-color: bisque;
+    background-color: whitesmoke;
     width: 330px;
     height: 370px;
     border: 3px solid rgb(56, 55, 55);
@@ -141,7 +145,7 @@ div.list p {
     padding-left: 10px;
     font-family: 'Satisfy', cursive, Arial;
     font-size: 20px;
-    border-bottom: 2px solid teal;
+    border-bottom: 2px solid rgb(76, 149, 218);
 }
 
 div.list button {
@@ -160,7 +164,7 @@ div.list li.item {
 }
 
 div.list li.item:hover {
-    border: 3px solid black;
+    border: 2px solid black;
     cursor: pointer;
 }
 
@@ -181,20 +185,20 @@ div.list button.edit-submit {
 }
 
 .swap-rank {
-    border: .5px solid rgb(248, 193, 125);
-    background-color: bisque;
+    border: .5px solid rgb(47, 56, 59);
+    background-color: rgb(240, 239, 239);
     color: red;
     font-size: 32px;
     box-shadow: 0 9px #999;
 }
 
 .swap-rank:hover {
-    background-color: bisque;
+    background-color: rgb(240, 239, 239);
     color: rgb(122, 10, 10);
 }
 
 .swap-rank:active {
-    background-color: bisque;
+    background-color: rgb(240, 239, 239);
     color: rgb(122, 10, 10);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
@@ -207,13 +211,13 @@ button.swap-rank:disabled {
 div.list button#rank-up {
     position: absolute;
     top: 130px;
-    right: 12px;
+    right: 11px;
 }
 
 div.list button#rank-down {
     position: absolute;
     bottom: 130px;
-    right: 12px;
+    right: 11px;
 }
 
 #rank-up:before {

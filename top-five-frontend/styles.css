@@ -5,8 +5,8 @@ body {
 }
 
 header {
-    background-color: teal;
-    color: cornsilk;
+    background-color: rgb(76, 149, 218);
+    color: whitesmoke;
     margin: auto;
     height: 90px;
     width: 50%;
@@ -14,10 +14,10 @@ header {
     font-size: 60px;
     font-family: 'Noto Serif', serif;
     border: 2px solid black;
-    box-shadow: 1px 1px darkslategray, 2px 2px darkslategray, 3px 3px darkslategray, 
-    4px 4px darkslategray, 5px 5px darkslategray, 6px 6px darkslategray,
-    7px 7px darkslategray, 8px 8px darkslategray, 9px 9px darkslategray, 
-    10px 10px darkslategray ;
+    box-shadow: 1px 1px rgb(5, 5, 78), 2px 2px rgb(5, 5, 78), 3px 3px rgb(5, 5, 78), 
+    4px 4px rgb(5, 5, 78), 5px 5px rgb(5, 5, 78), 6px 6px rgb(5, 5, 78),
+    7px 7px rgb(5, 5, 78), 8px 8px rgb(5, 5, 78), 9px 9px rgb(5, 5, 78), 
+    10px 10px rgb(5, 5, 78);
 }
 
 ol {

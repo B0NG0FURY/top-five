@@ -247,4 +247,5 @@ button.night-mode {
     color: white;
     padding: 10px 10px 10px 10px;
     cursor: pointer;
+    border-radius: 8px;
 }
